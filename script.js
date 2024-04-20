@@ -1,9 +1,13 @@
 //complete this code
-class Rectangle {
+class Rectangle{
 	constructor(width,height){
 		this._width = width;
 		this._height = height;
+		if(height==undefined){
+			this._height = width;
+		}
 	}
+
 	get width(){
 		return this._width;
 	}
@@ -13,19 +17,21 @@ class Rectangle {
 	}
 
 	getArea(){
-		return this._height*this._width;
+		return this._width*this._height;
 	}
 }
 
-class Square extends Rectangle {
-	constructor(side){
-		super(side,side);
-		this.side = side;
-	}
+
+class Square extends Rectangle{
+	constructor(number){
+		super(number);
+	}	
+
 	getPerimeter(){
-		return 4*this.side;
+		return 2*(this.width+this.height);
 	}
 }
+
 // const rectangle = new Rectangle(5, 10);
 // console.log(rectangle.width); // Output: 5
 // console.log(rectangle.height); // Output: 10
