@@ -1,36 +1,35 @@
 //complete this code
-class Rectangle{
-	constructor(width,height){
-		this._width = width;
-		this._height = height;
-		if(height==undefined){
-			this._height = width;
+function Rectangle(width,height) {
+	this._width = width;
+	this._height = height;
+
+	Object.defineProperty(this,'width',{
+		get:function () {
+			return this._width;
 		}
-	}
+	});
+	Object.defineProperty(this,'height',{
+		get:function () {
+			return this._height;
+		}
+	});
+}
 
-	get width(){
-		return this._width;
-	}
-
-	get height(){
-		return this._height;
-	}
-
-	getArea(){
-		return this._width*this._height;
-	}
+Rectangle.prototype.getArea = function () {
+	return this._width*this._height;
 }
 
 
-class Square extends Rectangle{
-	constructor(number){
-		super(number);
-	}	
-
-	getPerimeter(){
-		return 2*(this.width+this.height);
-	}
+function Square(params) {
+	Rectangle.call(this,params,params);
 }
+
+Square.prototype = Object.create(Rectangle.prototype);
+Square.prototype.constructor = Square;
+Square.prototype.getPerimeter = function () {
+	return 2*(this._width+this._height);
+}
+
 
 // const rectangle = new Rectangle(5, 10);
 // console.log(rectangle.width); // Output: 5
